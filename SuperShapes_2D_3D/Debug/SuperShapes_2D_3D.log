@@ -1,0 +1,21 @@
+﻿Der Buildvorgang wurde am 7/20/2016 10:40:14 gestartet.
+     1>Projekt "D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\SuperShapes_2D_3D\SuperShapes_2D_3D.vcxproj" auf Knoten "2", build Ziel(e).
+     1>InitializeBuildStatus:
+         "Debug\SuperShapes_2D_3D.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\Debug\SuperShapes_2D_3D.exe" /NOLOGO /LIBPATH:"D:\HS 1\SS_2016\TuP\glew-1.13.0-win32\glew-1.13.0\lib" freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\SuperShapes_2D_3D.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\Debug\SuperShapes_2D_3D.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\Debug\SuperShapes_2D_3D.lib" /MACHINE:X86 Debug\main.obj
+         LINK : D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\Debug\SuperShapes_2D_3D.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
+         SuperShapes_2D_3D.vcxproj -> D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\Debug\SuperShapes_2D_3D.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\Debug\SuperShapes_2D_3D.exe;#1" /manifest Debug\SuperShapes_2D_3D.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Die Datei "Debug\SuperShapes_2D_3D.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von "Debug\SuperShapes_2D_3D.lastbuildstate".
+     1>Die Erstellung des Projekts "D:\HS 1\SS_2016\TuP\SuperShapes_2D_3D\SuperShapes_2D_3D\SuperShapes_2D_3D.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:00.83
