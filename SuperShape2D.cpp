@@ -104,10 +104,9 @@ void SuperShape2D::setupVertexAndIndexBuffer(){
 
 	glewInit();
 
-	int size = (v_points)*3;
-	float *vb = new float[size + 6];
-	float *cb = new float[size + 3];
-	int *ib = new int[size + 6];
+	int size = (v_points + 2)*3;
+	float *vb = new float[size ];
+	int *ib = new int[size];
 
 	vb[0] = 0.0f;
 	vb[1] = 0.0f;
@@ -131,13 +130,11 @@ void SuperShape2D::setupVertexAndIndexBuffer(){
 		vb[index++] = v.cord[0];
 		vb[index++] = v.cord[1];
 		vb[index++] = v.cord[2];
-		
-		cb[cindex++] = 0.5f;
-		cb[cindex++] = 1.0f;
-		cb[cindex++] = 0.2f;
 	}
 
-	ib[v_points] = 1;
+	vb[index++] = vb[3];
+	vb[index++] = vb[4];
+	vb[index++] = vb[5];
 	
 	
 
@@ -149,20 +146,16 @@ void SuperShape2D::setupVertexAndIndexBuffer(){
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboID); // Bind the buffer (vertex array data)
 
-    glBufferData(GL_ARRAY_BUFFER, (size+2)*sizeof(float) , vb, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, (size + 6)*sizeof(float) , vb, GL_STATIC_DRAW);
 	//glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0)
 
-	glBindBuffer(GL_COLOR_ARRAY, cboID);
-	glBufferData(GL_COLOR_ARRAY, size*sizeof(float), cb, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (v_points + 1) * sizeof(int), ib, GL_STATIC_DRAW);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboID);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, (v_points + 2) * sizeof(int), ib, GL_STATIC_DRAW);
 	//glEnableVertexAttribArray(0);
 	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 	delete [] vb;
-	delete [] cb;
 }
 
 void SuperShape2D::draw()
@@ -182,13 +175,7 @@ void SuperShape2D::draw()
 	glEnableClientState(GL_COLOR_ARRAY);
 	glBindBuffer(GL_COLOR_ARRAY, cboID);
 	glColorPointer(3, GL_FLOAT, 3*sizeof(float), 0);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	
-	glLineWidth(4.0f);
-	
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboID);
-	glEnableClientState(GL_INDEX_ARRAY);
-
-	glDrawElements(GL_TRIANGLE_FAN, v_points + 2, GL_INT, 0);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, v_points + 2);
 }
