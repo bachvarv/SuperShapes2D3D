@@ -25,64 +25,56 @@ float evalR(float m, float n1, float n2, float n3, float a, float b, float angle
 	return result;
 }
 
-void renderFrame(SuperShape2D *shape)
+void renderFrame()
 {
-	//double dAspectRatio = double(800)/double(600);
-	//
-	//float m_dFieldOfView = 30.0;
-	//float m_nWidth = 1;
-	//float m_nHeight = 1;
-	//float m_dSceneRadius = 2.0;
-	//float m_dCenter = m_dSceneRadius/ sin(m_dFieldOfView*((2*M_PI)/180));
+	double dAspectRatio = double(800)/double(600);
+	
+	float m_dFieldOfView = 30.0;
+	float m_nWidth = 1;
+	float m_nHeight = 1;
+	float m_dSceneRadius = 2.0;
+	float m_dCenter = m_dSceneRadius/ sin(m_dFieldOfView*((2*M_PI)/180));
 	
 	//init();
 
-	// The usual OpenGL stuff to clear the screen and set up viewing.
+	//The usual OpenGL stuff to clear the screen and set up viewing.
 	//glClearColor(0, 0, 0, 0);
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//GLfloat fTop, fRight, fNear, fFar;
-	//
-	//fNear   = float(m_dCenter - m_dSceneRadius);
-	//fFar    = float(m_dCenter + m_dSceneRadius);
-	//
-	//if (dAspectRatio > 1.0) {
-	//	fRight = fNear * float(tan(m_dFieldOfView*((2*M_PI)/180)));
-	//	fTop   = fRight * float(dAspectRatio);		
-	//} else {
-	//	fTop   = fNear * float(tan(m_dFieldOfView*((2*M_PI)/180)));
-	//	fRight = fTop / float(dAspectRatio);
-	//} 
-	//
-	//glViewport(0,0,m_nWidth,m_nHeight);
-	//
-	//glMatrixMode(GL_PROJECTION);
-	//glLoadIdentity();
-	//glFrustum( -fTop, fTop, -fRight, fRight, fNear, 10*fFar);
+	GLfloat fTop, fRight, fNear, fFar;
+	
+	fNear   = float(m_dCenter - m_dSceneRadius);
+	fFar    = float(m_dCenter + m_dSceneRadius);
+	
+	if (dAspectRatio > 1.0) {
+		fRight = fNear * float(tan(m_dFieldOfView*((2*M_PI)/180)));
+		fTop   = fRight * float(dAspectRatio);		
+	} else {
+		fTop   = fNear * float(tan(m_dFieldOfView*((2*M_PI)/180)));
+		fRight = fTop / float(dAspectRatio);
+	} 
+	
+	glViewport(0,0,m_nWidth,m_nHeight);
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glFrustum( -fTop, fTop, -fRight, fRight, fNear, 10*fFar);
 
 	//CMatrix matModel = m_pCameraArcball->getRotatonMatrix().getInverse();
-	//
+	
 	//double matrix[16];
 	//matModel.get(matrix[ 0], matrix[ 4], matrix[ 8], matrix[12],
 	//	matrix[ 1], matrix[ 5], matrix[ 9], matrix[13],
 	//	matrix[ 2], matrix[ 6], matrix[10], matrix[14],
 	//	matrix[ 3], matrix[ 7], matrix[11], matrix[15]);
-	//
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	//glTranslated(m_dTranslateX * m_dSceneRadius/m_dZoom, m_dTranslateY*m_dSceneRadius/m_dZoom, -m_dCenter);
 	//glMultMatrixd(matrix);
-	////glTranslated(m_vecCameraPosition[0], m_vecCameraPosition[1], m_vecCameraPosition[2]);
+	//glTranslated(m_vecCameraPosition[0], m_vecCameraPosition[1], m_vecCameraPosition[2]);
 
 	//glClear(GL_COLOR_BUFFER_BIT);
-
-    //renderGeometry();
-
-	//shape->draw();
-
-	
-
-	
 
 	//glutSwapBuffers();
 }
@@ -105,6 +97,8 @@ void display()
 
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//renderFrame();
 
 	shape->draw();
 
