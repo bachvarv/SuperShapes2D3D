@@ -4,11 +4,32 @@
 #include <GL\glew.h>
 #include <GL\glut.h>
 
+
+
 #include <math.h>
 #include "SuperShape2D.h"
 
 
-GLuint vbi;
+
+
+int   wireframe = 0;
+float segments = 0.1;
+int   main_window;
+
+SuperShape2D* shape = NULL;
+
+
+void myGlutIdle( void )
+{
+  /* According to the GLUT specification, the current window is
+     undefined during an idle callback.  So we need to explicitly change
+     it if necessary */
+  if ( glutGetWindow() != main_window )
+    glutSetWindow(main_window);
+
+  //glutPostRedisplay();
+}
+
 float evalR(float m, float n1, float n2, float n3, float a, float b, float angle)
 {
 	float result = 1;
@@ -79,10 +100,8 @@ void renderFrame()
 	//glutSwapBuffers();
 }
 
-
-void display()
+void gl_DrawShape()
 {
-
 	float radius = 5;
 	float oldX = radius * cos(0.0f);
 	float oldY = radius * sin(0.0f);
@@ -93,14 +112,27 @@ void display()
 	float a = 1;
 	float b = 1;
 
-	SuperShape2D* shape = new SuperShape2D(m, n1, n2, n3, a, b, 100);
+	shape = new SuperShape2D(m, n1, n2, n3, a, b, 100);
+}
+
+
+
+void display()
+{
+
+	
+		gl_DrawShape();
+	
 
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//renderFrame();
 
+	//
+
 	shape->draw();
+
 
 	glutSwapBuffers();
 }
@@ -143,30 +175,6 @@ void init()
 
 
 
-void setup()
-{
-	
-	GLfloat vb[] =
-	{
-		-1.0f,-1.0f,0.0f,
-		0.0f,1.0f,0.0f,
-		1.0f,-1.0f, 0.0f
-	};
-
-	
-	glGenBuffers(1, &vbi);
-	glBindBuffer(GL_ARRAY_BUFFER, vbi);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vb), vb, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	
-}
-
-void draw()
-{
-	glBindBuffer(GL_ARRAY_BUFFER, vbi);
-	glVertexPointer(3, GL_FLOAT, 3*sizeof(GLfloat), 0);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-}
 
 void reshapeWindow(int w, int h)
 {
@@ -186,19 +194,39 @@ void reshapeWindow(int w, int h)
 
 }
 
-void gl_DrawShape(SuperShape2D* shape)
-{
-	
-}
+//void gl_DrawShape()
+//{
+//	float radius = 5;
+//	float oldX = radius * cos(0.0f);
+//	float oldY = radius * sin(0.0f);
+//	float m = rand()%7;
+//	float n1 = rand()%3;
+//	float n2 = rand()%4;
+//	float n3 = rand()%5;
+//	float a = 1;
+//	float b = 1;
+//
+//	SuperShape2D* shape = new SuperShape2D(m, n1, n2, n3, a, b, 100);
+//}
+
+
 
 int main(int argc, char** args)
 {
+
+	
+
 	glutInit(&argc, args);
+	
+
+
+
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(800, 600);
-	glutCreateWindow("3D and 2D Super shapes");
+	
 
+	
 
     //glutPassiveMotionFunc(move);
 
@@ -207,16 +235,23 @@ int main(int argc, char** args)
 	
 	//init();
 	
+	main_window = glutCreateWindow("3D and 2D Super shapes");
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshapeWindow);
+
+
 	//shape->draw();
 	//renderFrame(shape);
 	//setup();
 	//draw();
 	//shape->draw();
 
+
+
 	glutMainLoop();
 
+    // Create a CMyWindow object
 
+    // Run the application's message loop
 	return 0;
 }
